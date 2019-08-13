@@ -1,13 +1,3 @@
-var losses = 0;
-var wins = 0;
-var accuNum = 0
-var targetNum = "";
-var blueCrystal = Math.floor(Math.random() * 12) + 1;
-var purpleCrystal = Math.floor(Math.random() * 12) + 1;
-var redCrystal = Math.floor(Math.random() * 12) + 1;
-var yellowCrystal = Math.floor(Math.random() * 12) + 1;
-var targetNum = Math.floor(Math.random() * 102) + 19;
-
 var today = new Date();
 var hourNow = today.getHours();
 var greeting;
@@ -25,21 +15,31 @@ if (hourNow > 18) {
 $('.greetings').text(  greeting + ' Crystal Collector');
 
 
+var losses = 0;
+var wins = 0;
+var accuNum = 0
+// var targetNum = "";
+var targetNum = Math.floor(Math.random() * 102) + 19;
+var blueCrystal = Math.floor(Math.random() * 12) + 1;
+var purpleCrystal = Math.floor(Math.random() * 12) + 1;
+var redCrystal = Math.floor(Math.random() * 12) + 1;
+var yellowCrystal = Math.floor(Math.random() * 12) + 1;
 
 $('#random-number').text(targetNum);
-// $('win-counter').text(wins);
-// $('loss-counter').text(losses);
+$('win-counter').text(wins);
+$('loss-counter').text(losses);
 
 
 function crystalreset(){
  targetNum = Math.floor(Math.random() * 102) + 19;
+ $('#random-number').text(targetNum);
  blueCrystal = Math.floor(Math.random() * 12) + 1;
  purpleCrystal = Math.floor(Math.random() * 12) + 1;
  redCrystal = Math.floor(Math.random() * 12) + 1;
  yellowCrystal = Math.floor(Math.random() * 12) + 1;
  accuNum = 0;
  $('#total-score').text(accuNum);  //check this if errors
- $('#randomNumber').text(targetNum);
+ 
 };
 
 
@@ -47,6 +47,8 @@ function gameRules() {
     
     $('#total-score').text(accuNum); 
 if (accuNum ===targetNum ) {
+    $('#total-score').text(accuNum); 
+    alert('You Win!')
     wins++
     console.log(accuNum);
    $('#win-counter').text( wins );
@@ -54,6 +56,7 @@ if (accuNum ===targetNum ) {
 
 } else if (accuNum > targetNum) {
     $('#total-score').text(accuNum); 
+    alert('You lost!')
     losses++
   $('#loss-counter').text( losses );
     crystalreset()
